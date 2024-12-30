@@ -12,5 +12,4 @@ import dagger.hilt.android.components.ViewModelComponent
 abstract class RepoModule {
     @Binds
     abstract fun bindRepoImpl(repoImpl: RepoBurgerImpl): RepoBurge
-
 }

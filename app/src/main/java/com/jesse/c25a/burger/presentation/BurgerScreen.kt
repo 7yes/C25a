@@ -1,4 +1,4 @@
-package com.jesse.c25a.burger
+package com.jesse.c25a.burger.presentation
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -24,11 +24,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.jesse.c25a.burger.domain.model.SmallItem
-import com.jesse.c25a.burger.presentation.SmallViewModel
 import com.jesse.c25a.burger.presentation.uiState.UIState
 
 @Composable
-fun InitialScreen(mainViewModel: SmallViewModel = hiltViewModel()) {
+fun InitialScreen(mainViewModel: SmallViewModel = hiltViewModel()) { //Screen initial in Burger
     val data by mainViewModel.uiState.collectAsState()
     lateinit var itemSelected: SmallItem
     val navController = rememberNavController()

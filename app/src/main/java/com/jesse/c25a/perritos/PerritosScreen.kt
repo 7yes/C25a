@@ -32,7 +32,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Url
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PerritosScreen() {
 
