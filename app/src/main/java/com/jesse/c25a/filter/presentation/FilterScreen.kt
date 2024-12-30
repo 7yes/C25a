@@ -7,6 +7,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -36,6 +37,7 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
+import com.jesse.c25a.burger.domain.model.SmallItem
 import com.jesse.c25a.burger.presentation.uiState.UIStateFilter
 
 @RequiresApi(Build.VERSION_CODES.VANILLA_ICE_CREAM)
@@ -46,6 +48,7 @@ fun FilterScreen(filterVM: FilterVM = hiltViewModel()) {
     var text by remember { mutableStateOf("") }
     val focusManager = LocalFocusManager.current
     val keyboardController = LocalSoftwareKeyboardController.current
+    lateinit var data: MutableList<SmallItem>
     Column(
         Modifier
             .fillMaxSize()
@@ -58,11 +61,13 @@ fun FilterScreen(filterVM: FilterVM = hiltViewModel()) {
         ) {
             SearchBar(
                 query = text,
-                onQueryChange = { text = it },
+                onQueryChange = {
+                    text = it
+                    filterVM.filterData(text)
+                },
                 onSearch = {
                     focusManager.clearFocus()
                     keyboardController?.hide()
-                    updateDataList(text)
                 },
                 onActiveChange = { },
                 active = false,
@@ -73,32 +78,42 @@ fun FilterScreen(filterVM: FilterVM = hiltViewModel()) {
             ) {
             }
         }
-        Column (Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+        Column(
+            Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
             when (state) {
                 is UIStateFilter.Success -> {
-                    val data = (state as UIStateFilter.Success).mySuccessList.toMutableStateList()
-                    Button(onClick = { data.add(1, data[0].copy(name = "New")) }) {
-                        Text(text = "Add")}
+                    data = (state as UIStateFilter.Success).mySuccessList.toMutableStateList()
                     LazyColumn(
-                           Modifier
-                               .padding(8.dp)
-                       ) {
-                           items(data.size) {
-                               ListItem(
-                                   headlineContent = { Text(text = data[it].name ?: "") },
-                                   supportingContent = { Text(text = data[it].age ?: "") },
-                                   leadingContent = {
-                                       AsyncImage(
-                                           model = data[it].image,
-                                           contentDescription = null,
-                                           modifier = Modifier.size(100.dp))
-                                   },
-                                   trailingContent = { Button(onClick = {
-                                       data.removeAt(it)
-                                   }) { Text("Delete") } }
-                               )
-                           }
-                       }
+                        Modifier
+                            .padding(8.dp)
+                            .weight(1f)
+                    ) {
+                        items(data.size) {
+                            ListItem(
+                                headlineContent = { Text(text = data[it].name ?: "") },
+                                supportingContent = { Text(text = data[it].age ?: "") },
+                                leadingContent = {
+                                    AsyncImage(
+                                        model = data[it].image,
+                                        contentDescription = null,
+                                        modifier = Modifier.size(100.dp)
+                                    )
+                                },
+                                trailingContent = {
+                                    Button(onClick = {
+                                        filterVM.removeAt(it)
+                                    }) { Text("Delete") }
+                                }
+                            )
+                        }
+                    }
+                    Button(onClick = { data.add(1, data[0].copy(name = "New")) }) {
+                        Text(text = "Add")
+                    }
+                    Spacer(modifier = Modifier.size(16.dp))
                 }
 
                 is UIStateFilter.Error -> {
