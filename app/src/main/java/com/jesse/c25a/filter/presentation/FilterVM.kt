@@ -49,4 +49,9 @@ class FilterVM @Inject constructor(private val getDataUC: GetDataUC) : ViewModel
         _uiState.value = UIStateFilter.Success(datag)
     }
 
+    fun addItem() {
+        datag.add(1, datag[0].copy(name = "New"))
+        _uiState.value = UIStateFilter.Success(datag)
+    }
+
 }

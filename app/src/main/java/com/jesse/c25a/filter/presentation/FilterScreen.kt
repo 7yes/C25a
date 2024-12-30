@@ -27,6 +27,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
@@ -46,6 +47,7 @@ import com.jesse.c25a.burger.presentation.uiState.UIStateFilter
 fun FilterScreen(filterVM: FilterVM = hiltViewModel()) {
     val state by filterVM.uiState.collectAsState()
     var text by remember { mutableStateOf("") }
+    var text2 by rememberSaveable { mutableStateOf("") }
     val focusManager = LocalFocusManager.current
     val keyboardController = LocalSoftwareKeyboardController.current
     lateinit var data: MutableList<SmallItem>
@@ -110,7 +112,9 @@ fun FilterScreen(filterVM: FilterVM = hiltViewModel()) {
                             )
                         }
                     }
-                    Button(onClick = { data.add(1, data[0].copy(name = "New")) }) {
+                    Button(onClick = { //data.add(1, data[0].copy(name = "New"))
+                        filterVM.addItem()
+                    }) {
                         Text(text = "Add")
                     }
                     Spacer(modifier = Modifier.size(16.dp))
