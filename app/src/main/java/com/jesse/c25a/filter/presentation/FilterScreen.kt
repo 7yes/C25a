@@ -1,7 +1,6 @@
 package com.jesse.c25a.filter.presentation
 
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -20,6 +19,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
+import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -27,7 +27,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
@@ -47,7 +46,6 @@ import com.jesse.c25a.burger.presentation.uiState.UIStateFilter
 fun FilterScreen(filterVM: FilterVM = hiltViewModel()) {
     val state by filterVM.uiState.collectAsState()
     var text by remember { mutableStateOf("") }
-    var text2 by rememberSaveable { mutableStateOf("") }
     val focusManager = LocalFocusManager.current
     val keyboardController = LocalSoftwareKeyboardController.current
     lateinit var data: MutableList<SmallItem>
@@ -108,7 +106,10 @@ fun FilterScreen(filterVM: FilterVM = hiltViewModel()) {
                                     Button(onClick = {
                                         filterVM.removeAt(it)
                                     }) { Text("Delete") }
-                                }
+                                },
+                                tonalElevation = 10.dp,
+                                shadowElevation = 100.dp,
+                                colors = ListItemDefaults.colors(containerColor = Color.White)
                             )
                         }
                     }
@@ -128,9 +129,4 @@ fun FilterScreen(filterVM: FilterVM = hiltViewModel()) {
             }
         }
     }
-
-}
-
-fun updateDataList(text: String) {
-    Log.d("TAJ", "updateDataList: $text")
 }

@@ -21,6 +21,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.jesse.c25a.burger.presentation.InitialScreen
+import com.jesse.c25a.datastore.DataStoreScreen
 import com.jesse.c25a.filter.presentation.FilterScreen
 import com.jesse.c25a.perritos.PerritosScreen
 import com.jesse.c25a.ui.theme.C25aTheme
@@ -34,7 +35,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             C25aTheme {
                 val navController = rememberNavController()
-                NavHost(navController = navController, startDestination = MyScreens.BaseScreen.name) {
+                NavHost(
+                    navController = navController,
+                    startDestination = MyScreens.BaseScreen.name
+                ) {
                     composable(MyScreens.BaseScreen.name) {
                         BaseScreen() {
                             Log.d("TAJ", "onCreate: $it ")
@@ -50,13 +54,17 @@ class MainActivity : ComponentActivity() {
                     composable(MyScreens.Filter.name) {
                         FilterScreen()
                     }
+                    composable(MyScreens.DataStore.name) {
+                        DataStoreScreen()
+                    }
                 }
             }
         }
     }
-enum class MyScreens{
-    BaseScreen, Burger, Perritos, Filter
-}
+
+    enum class MyScreens {
+        BaseScreen, Burger, Perritos, Filter, DataStore
+    }
 
     @Composable
     fun BaseScreen(onclick: (String) -> Unit) {
@@ -67,11 +75,25 @@ enum class MyScreens{
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Row (modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceAround){
-               MyScreens.values().forEach {
-                   if(it != MyScreens.BaseScreen)
-                   Button(onClick = { onclick(it.name) }) { Text(text = it.name) }
-               }
+            var buttons = ""
+            MyScreens.values().forEach {
+                if (it != MyScreens.BaseScreen)
+                    buttons += "${it.name} "
+            }
+            val buttonsChuncked = buttons.split(" ").chunked(3)
+            buttonsChuncked.forEach {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceAround
+                ) {
+
+                    it.forEach {
+                        if (it != "")
+                        Button(onClick = { onclick(it) }) {
+                            Text(text = it)
+                        }
+                    }
+                }
             }
         }
     }
