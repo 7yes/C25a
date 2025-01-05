@@ -13,6 +13,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -22,10 +23,6 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -34,25 +31,22 @@ import retrofit2.http.Url
 
 @Composable
 fun PerritosScreen() {
-
+var tocall by rememberSaveable { mutableStateOf(false) }
     val datos = rememberSaveable { mutableListOf<String>() }
-
-    val deffered = CoroutineScope(Dispatchers.IO).launch {
+    LaunchedEffect(true) {
         datos.addAll(getDogs("akita"))
+        Log.d("TAJ", "PerritosScreen: en el after launch ")
+        tocall = true
     }
-    runBlocking {
-        deffered.join()
-    }
-    Log.d("TAJ", "PerritosScreen: ${datos}")
-
-    if (datos.isNotEmpty()) {
-        showDogs(datos)
+    if (tocall) {
+        Log.i("TAJ", "PerritosScreen: call showDogs ")
+        ShowDogs(datos)
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun showDogs(dogs: List<String>) {
+fun ShowDogs(dogs: List<String>) {
     val focusManager = LocalFocusManager.current
     val keyboardController = LocalSoftwareKeyboardController.current
     var searchText by rememberSaveable { mutableStateOf("") }
@@ -90,7 +84,7 @@ fun showDogs(dogs: List<String>) {
 }
 
 suspend fun getDogs(breed:String): List<String> {
-    Log.d("TAJ", "getDogs was called ")
+    Log.d("TAJ", "getDogs was called API")
     val retrofit = getRetrofit()
     val perritosApi = retrofit.create(perritosApi::class.java)
     val data = mutableListOf<String>()

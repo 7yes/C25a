@@ -1,7 +1,5 @@
 package com.jesse.c25a.filter.presentation
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -40,7 +38,7 @@ import coil.compose.AsyncImage
 import com.jesse.c25a.burger.domain.model.SmallItem
 import com.jesse.c25a.burger.presentation.uiState.UIStateFilter
 
-@RequiresApi(Build.VERSION_CODES.VANILLA_ICE_CREAM)
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FilterScreen(filterVM: FilterVM = hiltViewModel()) {
