@@ -23,6 +23,7 @@ import androidx.navigation.compose.rememberNavController
 import com.jesse.c25a.burger.presentation.InitialScreen
 import com.jesse.c25a.datastore.DataStoreScreen
 import com.jesse.c25a.filter.presentation.FilterScreen
+import com.jesse.c25a.flows.FlowsScreen
 import com.jesse.c25a.perritos.PerritosScreen
 import com.jesse.c25a.ui.theme.C25aTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -57,13 +58,16 @@ class MainActivity : ComponentActivity() {
                     composable(MyScreens.DataStore.name) {
                         DataStoreScreen()
                     }
+                    composable(MyScreens.Flows.name) {
+                        FlowsScreen()
+                    }
                 }
             }
         }
     }
 
     enum class MyScreens {
-        BaseScreen, Burger, Perritos, Filter, DataStore
+        BaseScreen, Burger, Perritos, Filter, DataStore, Flows
     }
 
     @Composable
@@ -76,7 +80,7 @@ class MainActivity : ComponentActivity() {
             verticalArrangement = Arrangement.Center
         ) {
             var buttons = ""
-            MyScreens.values().forEach {
+            MyScreens.entries.forEach {
                 if (it != MyScreens.BaseScreen)
                     buttons += "${it.name} "
             }
@@ -89,9 +93,9 @@ class MainActivity : ComponentActivity() {
 
                     it.forEach {
                         if (it != "")
-                        Button(onClick = { onclick(it) }) {
-                            Text(text = it)
-                        }
+                            Button(onClick = { onclick(it) }) {
+                                Text(text = it)
+                            }
                     }
                 }
             }
