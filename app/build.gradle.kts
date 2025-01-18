@@ -64,6 +64,7 @@ dependencies {
 
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.runtime.livedata)
+
     implementation(libs.androidx.datastore.preferences)
 
     androidTestImplementation(libs.androidx.junit)
@@ -72,4 +73,5 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
 }
