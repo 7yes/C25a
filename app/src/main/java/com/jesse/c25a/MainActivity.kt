@@ -24,7 +24,7 @@ import com.jesse.c25a.burger.presentation.InitialScreen
 import com.jesse.c25a.datastore.DataStoreScreen
 import com.jesse.c25a.filter.presentation.FilterScreen
 import com.jesse.c25a.flows.FlowsScreen
-import com.jesse.c25a.pag3.presentation.Pag3Screen
+import com.jesse.c25a.pag3.presentation.QualifierScreen
 import com.jesse.c25a.perritos.PerritosScreen
 import com.jesse.c25a.ui.theme.C25aTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -63,7 +63,7 @@ class MainActivity : ComponentActivity() {
                         FlowsScreen()
                     }
                     composable(MyScreens.Paging3.name) {
-                        Pag3Screen()
+                        QualifierScreen()
                     }
                 }
             }

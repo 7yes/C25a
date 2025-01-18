@@ -23,7 +23,7 @@ import coil.compose.AsyncImage
 import com.jesse.c25a.pag3.presentation.uiState.UIState
 
 @Composable
-fun Pag3Screen(viewModel: ChatacterVM = hiltViewModel()) {
+fun QualifierScreen(viewModel: ChatacterVM = hiltViewModel()) {
     val characters by viewModel.uiState.collectAsState()
     Log.d("TAJ", "Pag3Screen: $characters")
 
