@@ -24,6 +24,7 @@ import com.jesse.c25a.burger.presentation.InitialScreen
 import com.jesse.c25a.datastore.DataStoreScreen
 import com.jesse.c25a.filter.presentation.FilterScreen
 import com.jesse.c25a.flows.FlowsScreen
+import com.jesse.c25a.qualifier.presentation.QualifierScreen
 import com.jesse.c25a.perritos.PerritosScreen
 import com.jesse.c25a.ui.theme.C25aTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -61,13 +62,16 @@ class MainActivity : ComponentActivity() {
                     composable(MyScreens.Flows.name) {
                         FlowsScreen()
                     }
+                    composable(MyScreens.Paging3.name) {
+                        QualifierScreen()
+                    }
                 }
             }
         }
     }
 
     enum class MyScreens {
-        BaseScreen, Burger, Perritos, Filter, DataStore, Flows
+        BaseScreen, Burger, Perritos, Filter, DataStore, Flows, Paging3
     }
 
     @Composable
