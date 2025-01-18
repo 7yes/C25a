@@ -10,18 +10,18 @@ class CharacterPagingSource @Inject constructor(private val api: RickMortyApiSer
     PagingSource<Int, CharacterModel>() {
 
     override fun getRefreshKey(state: PagingState<Int, CharacterModel>): Int? {
-        return state.anchorPosition
+        return state.anchorPosition // calculate actual position
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, CharacterModel> {
 
         return try {
-            val page = params.key ?: 1
+            val page = params.key ?: 1  // new page
             val response = api.getCharacters(page)
             val characters = response.results
 
-            val prevKey = if (page > 0) page - 1 else null
-            val nextKey = if (response.information.next != null) page + 1 else null
+            val prevKey = if (page > 0) page - 1 else null // prev page
+            val nextKey = if (response.information.next != null) page + 1 else null // next page
 
             LoadResult.Page(
                 data = characters.map { it.toPresentation() },
@@ -31,7 +31,5 @@ class CharacterPagingSource @Inject constructor(private val api: RickMortyApiSer
         } catch (exception: IOException) {
             LoadResult.Error(exception)
         }
-
     }
-
 }

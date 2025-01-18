@@ -73,10 +73,10 @@ fun Paging3Screen(rickListViewModel: RickListViewModel = hiltViewModel()) {
         else -> {
             CharactersList(characters)
 
-            if (characters.loadState.append is LoadState.Loading) {
+            if (characters.loadState.append is LoadState.Loading) { // cuando vuelve y recarga nuevos datos
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     CircularProgressIndicator(
-                        modifier = Modifier.size(64.dp), color = Color.White
+                        modifier = Modifier.size(64.dp), color = Color.Red
                     )
                 }
             }
