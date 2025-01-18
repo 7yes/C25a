@@ -1,7 +1,7 @@
-package com.jesse.c25a.pag3.data
+package com.jesse.c25a.qualifier.data
 
-import com.jesse.c25a.pag3.data.model.toDomain
-import com.jesse.c25a.pag3.domain.model.CharacterItem
+import com.jesse.c25a.qualifier.data.model.toDomain
+import com.jesse.c25a.qualifier.domain.model.CharacterItem
 import javax.inject.Inject
 
 class CharacterRepo @Inject constructor(private val apiServ: CharacterServ) {

@@ -1,6 +1,6 @@
-package com.jesse.c25a.pag3.data.model
+package com.jesse.c25a.qualifier.data.model
 
-import com.jesse.c25a.pag3.domain.model.CharacterItem
+import com.jesse.c25a.qualifier.domain.model.CharacterItem
 
 data class Results(
     val created: String,

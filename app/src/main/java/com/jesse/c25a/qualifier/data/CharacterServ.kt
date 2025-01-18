@@ -1,6 +1,6 @@
-package com.jesse.c25a.pag3.data
+package com.jesse.c25a.qualifier.data
 
-import com.jesse.c25a.pag3.data.model.Results
+import com.jesse.c25a.qualifier.data.model.Results
 import javax.inject.Inject
 
 class CharacterServ @Inject constructor(private val api: CharactersApi){

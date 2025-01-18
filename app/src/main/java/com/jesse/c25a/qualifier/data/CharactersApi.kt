@@ -1,6 +1,6 @@
-package com.jesse.c25a.pag3.data
+package com.jesse.c25a.qualifier.data
 
-import com.jesse.c25a.pag3.data.model.CharacterResponse
+import com.jesse.c25a.qualifier.data.model.CharacterResponse
 import retrofit2.Response
 import retrofit2.http.GET
 

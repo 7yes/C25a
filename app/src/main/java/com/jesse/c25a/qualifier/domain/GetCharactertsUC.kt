@@ -1,7 +1,7 @@
-package com.jesse.c25a.pag3.domain
+package com.jesse.c25a.qualifier.domain
 
-import com.jesse.c25a.pag3.data.CharacterRepo
-import com.jesse.c25a.pag3.domain.model.CharacterItem
+import com.jesse.c25a.qualifier.data.CharacterRepo
+import com.jesse.c25a.qualifier.domain.model.CharacterItem
 import javax.inject.Inject
 
 class GetCharactertsUC @Inject constructor(private val repo: CharacterRepo) {
