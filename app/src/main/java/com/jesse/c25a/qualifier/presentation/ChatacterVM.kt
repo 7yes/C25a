@@ -1,10 +1,10 @@
-package com.jesse.c25a.pag3.presentation
+package com.jesse.c25a.qualifier.presentation
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jesse.c25a.pag3.domain.GetCharactertsUC
-import com.jesse.c25a.pag3.presentation.uiState.UIState
+import com.jesse.c25a.qualifier.domain.GetCharactertsUC
+import com.jesse.c25a.qualifier.presentation.uiState.UIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

@@ -1,6 +1,6 @@
 package com.jesse.bopag.di
 
-import com.jesse.c25a.pag3.data.CharactersApi
+import com.jesse.c25a.qualifier.data.CharactersApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

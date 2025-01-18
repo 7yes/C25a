@@ -1,4 +1,4 @@
-package com.jesse.c25a.pag3.presentation
+package com.jesse.c25a.qualifier.presentation
 
 import android.util.Log
 import androidx.compose.foundation.layout.Box
@@ -20,7 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
-import com.jesse.c25a.pag3.presentation.uiState.UIState
+import com.jesse.c25a.qualifier.presentation.uiState.UIState
 
 @Composable
 fun QualifierScreen(viewModel: ChatacterVM = hiltViewModel()) {

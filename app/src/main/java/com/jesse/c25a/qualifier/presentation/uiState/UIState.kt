@@ -1,6 +1,6 @@
-package com.jesse.c25a.pag3.presentation.uiState
+package com.jesse.c25a.qualifier.presentation.uiState
 
-import com.jesse.c25a.pag3.domain.model.CharacterItem
+import com.jesse.c25a.qualifier.domain.model.CharacterItem
 
 sealed class UIState {
         data object Loading: UIState()

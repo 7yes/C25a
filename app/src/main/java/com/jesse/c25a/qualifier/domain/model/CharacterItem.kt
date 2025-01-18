@@ -1,4 +1,4 @@
-package com.jesse.c25a.pag3.domain.model
+package com.jesse.c25a.qualifier.domain.model
 
 data class CharacterItem(
     val id: Int?,
