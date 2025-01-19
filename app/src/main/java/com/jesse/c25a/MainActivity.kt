@@ -27,6 +27,7 @@ import com.jesse.c25a.flows.FlowsScreen
 import com.jesse.c25a.paging3tutorial.presentation.Paging3Screen
 import com.jesse.c25a.qualifier.presentation.QualifierScreen
 import com.jesse.c25a.perritos.PerritosScreen
+import com.jesse.c25a.twocomposable.TwoComposableScreen
 import com.jesse.c25a.ui.theme.C25aTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -69,13 +70,16 @@ class MainActivity : ComponentActivity() {
                     composable(MyScreens.Paging3.name) {
                         Paging3Screen()
                     }
+                    composable(MyScreens.TwoComposable.name) {
+                        TwoComposableScreen()
+                    }
                 }
             }
         }
     }
 
     enum class MyScreens {
-        BaseScreen, Burger, Perritos, Filter, DataStore, Flows, Qualifier, Paging3
+        BaseScreen, Burger, Perritos, Filter, DataStore, Flows, Qualifier, Paging3, TwoComposable
     }
 
     @Composable
