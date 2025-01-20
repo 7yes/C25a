@@ -18,14 +18,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import com.jesse.c25a.burger.presentation.InitialScreen
+import androidx.navigation.compose.composable import androidx.navigation.compose.rememberNavController import com.jesse.c25a.burger.presentation.InitialScreen
 import com.jesse.c25a.datastore.DataStoreScreen
 import com.jesse.c25a.filter.presentation.FilterScreen
 import com.jesse.c25a.flows.FlowsScreen
+import com.jesse.c25a.hg.parallax.ParallaxEffectScreen
+import com.jesse.c25a.paging3tutorial.presentation.Paging3Screen
 import com.jesse.c25a.qualifier.presentation.QualifierScreen
 import com.jesse.c25a.perritos.PerritosScreen
+import com.jesse.c25a.twocomposable.TwoComposableScreen
 import com.jesse.c25a.ui.theme.C25aTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -41,37 +42,25 @@ class MainActivity : ComponentActivity() {
                     navController = navController,
                     startDestination = MyScreens.BaseScreen.name
                 ) {
-                    composable(MyScreens.BaseScreen.name) {
-                        BaseScreen() {
-                            Log.d("TAJ", "onCreate: $it ")
-                            navController.navigate(it)
-                        }
-                    }
-                    composable(MyScreens.Burger.name) {
-                        InitialScreen()
-                    }
-                    composable(MyScreens.Perritos.name) {
-                        PerritosScreen()
-                    }
-                    composable(MyScreens.Filter.name) {
-                        FilterScreen()
-                    }
-                    composable(MyScreens.DataStore.name) {
-                        DataStoreScreen()
-                    }
-                    composable(MyScreens.Flows.name) {
-                        FlowsScreen()
-                    }
-                    composable(MyScreens.Paging3.name) {
-                        QualifierScreen()
-                    }
+                    composable(MyScreens.BaseScreen.name) { BaseScreen() { Log.d("TAJ", "onCreate: $it ")
+                            navController.navigate(it) } }
+                    composable(MyScreens.Burger.name) { InitialScreen() }
+                    composable(MyScreens.Perritos.name) { PerritosScreen() }
+                    composable(MyScreens.Filter.name) { FilterScreen() }
+                    composable(MyScreens.DataStore.name) { DataStoreScreen() }
+                    composable(MyScreens.Flows.name) { FlowsScreen() }
+                    composable(MyScreens.Qualifier.name) { QualifierScreen() }
+                    composable(MyScreens.Paging3.name) { Paging3Screen() }
+                    composable(MyScreens.TwoComposable.name) { TwoComposableScreen() }
+                    composable(MyScreens.TwoComposable.name) { TwoComposableScreen() }
+                    composable(MyScreens.ParallaxHg.name) { ParallaxEffectScreen() }
                 }
             }
         }
     }
 
     enum class MyScreens {
-        BaseScreen, Burger, Perritos, Filter, DataStore, Flows, Paging3
+        BaseScreen, Burger, Perritos, Filter, DataStore, Flows, Qualifier, Paging3, TwoComposable, ParallaxHg
     }
 
     @Composable
