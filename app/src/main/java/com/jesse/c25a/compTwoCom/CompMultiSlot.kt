@@ -26,8 +26,8 @@ fun MyComplexLayout(
 ) {
     Column(
         modifier = Modifier
+            .padding(32.dp)
             .background(Color.Yellow)
-            .padding(16.dp)
     ) {
         header()
         body()

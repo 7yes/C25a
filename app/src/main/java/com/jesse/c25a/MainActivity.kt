@@ -60,14 +60,14 @@ class MainActivity : ComponentActivity() {
                     composable(MyScreens.TwoCom1.name) { TwoComposableScreen() }
                     composable(MyScreens.CompAsArg.name) { ComposableAsArgumentScreen() }
                     composable(MyScreens.CompMultiSlot.name) { CompMultiSlotScreen() }
-                    composable(MyScreens.CompWrapper.name) { ComposableWrapperScreen() }
+                    composable(MyScreens.CWrap.name) { ComposableWrapperScreen() }
                 }
             }
         }
     }
 
     enum class MyScreens {
-        BaseScreen, Burger, Perritos, Filter, DataStore, Flows, Qualifier, Paging3, ParallaxHg, TwoCom1, CompAsArg, CompMultiSlot, CompWrapper
+        BaseScreen, Burger, Perritos, Filter, DataStore, Flows, Qualifier, Paging3, ParallaxHg, TwoCom1, CompAsArg, CompMultiSlot, CWrap
     }
 
     @Composable
