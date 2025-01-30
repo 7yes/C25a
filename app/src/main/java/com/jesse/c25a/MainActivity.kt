@@ -18,14 +18,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable import androidx.navigation.compose.rememberNavController import com.jesse.c25a.burger.presentation.InitialScreen
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.jesse.c25a.burger.presentation.InitialScreen
+import com.jesse.c25a.composableAsArgumentScreen.ComposableAsArgumentScreen
 import com.jesse.c25a.datastore.DataStoreScreen
 import com.jesse.c25a.filter.presentation.FilterScreen
 import com.jesse.c25a.flows.FlowsScreen
 import com.jesse.c25a.hg.parallax.ParallaxEffectScreen
 import com.jesse.c25a.paging3tutorial.presentation.Paging3Screen
-import com.jesse.c25a.qualifier.presentation.QualifierScreen
 import com.jesse.c25a.perritos.PerritosScreen
+import com.jesse.c25a.qualifier.presentation.QualifierScreen
 import com.jesse.c25a.twocomposable.TwoComposableScreen
 import com.jesse.c25a.ui.theme.C25aTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -54,13 +57,14 @@ class MainActivity : ComponentActivity() {
                     composable(MyScreens.TwoComposable.name) { TwoComposableScreen() }
                     composable(MyScreens.TwoComposable.name) { TwoComposableScreen() }
                     composable(MyScreens.ParallaxHg.name) { ParallaxEffectScreen() }
+                    composable(MyScreens.ComAsArgument.name) { ComposableAsArgumentScreen() }
                 }
             }
         }
     }
 
     enum class MyScreens {
-        BaseScreen, Burger, Perritos, Filter, DataStore, Flows, Qualifier, Paging3, TwoComposable, ParallaxHg
+        BaseScreen, Burger, Perritos, Filter, DataStore, Flows, Qualifier, Paging3, TwoComposable, ParallaxHg, ComAsArgument
     }
 
     @Composable
