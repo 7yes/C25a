@@ -1,4 +1,4 @@
-package com.jesse.c25a.composableAsArgumentScreen
+package com.jesse.c25a.compTwoCom
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -32,31 +32,20 @@ fun ComposableAsArgumentScreen() {
 
     // big red Box composable
     val composable1 = @Composable {
-        Box (
-            modifier = Modifier
-                .size(200.dp)
-                .background(Color.Red)
-        )
+        Box (modifier = Modifier.size(200.dp).background(Color.Red))
     }
 
-    // small blue Box composable
-    val composable2 = @Composable {
-       Text(text = "Hola")
-    }
+    // Text composable
+    val composable2 = @Composable { Text(text = "Hola") }
 
     // small green rectangular Box composable
     val composable3 = @Composable {
-        Box(
-            modifier = Modifier
-                .size(width = 100.dp, height = 30.dp)
-                .background(Color.Green)
-        )
-    }
+        Box(modifier = Modifier.size(width = 100.dp, height = 30.dp)
+                .background(Color.Green)) }
 
     var dynamicComposable by remember { mutableStateOf<@Composable () -> Unit> (@Composable { composable1() }) }
 
-    Column(
-        modifier = Modifier.fillMaxSize(),
+    Column(modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 

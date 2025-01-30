@@ -21,7 +21,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.jesse.c25a.burger.presentation.InitialScreen
-import com.jesse.c25a.composableAsArgumentScreen.ComposableAsArgumentScreen
+import com.jesse.c25a.compTwoCom.CompMultiSlotScreen
+import com.jesse.c25a.compTwoCom.ComposableAsArgumentScreen
+import com.jesse.c25a.compTwoCom.ComposableWrapperScreen
 import com.jesse.c25a.datastore.DataStoreScreen
 import com.jesse.c25a.filter.presentation.FilterScreen
 import com.jesse.c25a.flows.FlowsScreen
@@ -54,17 +56,18 @@ class MainActivity : ComponentActivity() {
                     composable(MyScreens.Flows.name) { FlowsScreen() }
                     composable(MyScreens.Qualifier.name) { QualifierScreen() }
                     composable(MyScreens.Paging3.name) { Paging3Screen() }
-                    composable(MyScreens.TwoComposable.name) { TwoComposableScreen() }
-                    composable(MyScreens.TwoComposable.name) { TwoComposableScreen() }
                     composable(MyScreens.ParallaxHg.name) { ParallaxEffectScreen() }
-                    composable(MyScreens.ComAsArgument.name) { ComposableAsArgumentScreen() }
+                    composable(MyScreens.TwoCom1.name) { TwoComposableScreen() }
+                    composable(MyScreens.CompAsArg.name) { ComposableAsArgumentScreen() }
+                    composable(MyScreens.CompMultiSlot.name) { CompMultiSlotScreen() }
+                    composable(MyScreens.CompWrapper.name) { ComposableWrapperScreen() }
                 }
             }
         }
     }
 
     enum class MyScreens {
-        BaseScreen, Burger, Perritos, Filter, DataStore, Flows, Qualifier, Paging3, TwoComposable, ParallaxHg, ComAsArgument
+        BaseScreen, Burger, Perritos, Filter, DataStore, Flows, Qualifier, Paging3, ParallaxHg, TwoCom1, CompAsArg, CompMultiSlot, CompWrapper
     }
 
     @Composable
