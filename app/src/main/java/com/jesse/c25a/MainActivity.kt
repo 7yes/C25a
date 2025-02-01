@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,6 +23,7 @@ import com.jesse.c25a.burger.presentation.InitialScreen
 import com.jesse.c25a.compTwoCom.CompMultiSlotScreen
 import com.jesse.c25a.compTwoCom.ComposableAsArgumentScreen
 import com.jesse.c25a.compTwoCom.ComposableWrapperScreen
+import com.jesse.c25a.compTwoCom.MyText
 import com.jesse.c25a.datastore.DataStoreScreen
 import com.jesse.c25a.filter.presentation.FilterScreen
 import com.jesse.c25a.flows.FlowsScreen
@@ -31,6 +31,7 @@ import com.jesse.c25a.hg.parallax.ParallaxEffectScreen
 import com.jesse.c25a.paging3tutorial.presentation.Paging3Screen
 import com.jesse.c25a.perritos.PerritosScreen
 import com.jesse.c25a.qualifier.presentation.QualifierScreen
+import com.jesse.c25a.quick.QuickScreen
 import com.jesse.c25a.twocomposable.TwoComposableScreen
 import com.jesse.c25a.ui.theme.C25aTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -61,13 +62,14 @@ class MainActivity : ComponentActivity() {
                     composable(MyScreens.CompAsArg.name) { ComposableAsArgumentScreen() }
                     composable(MyScreens.CompMultiSlot.name) { CompMultiSlotScreen() }
                     composable(MyScreens.CWrap.name) { ComposableWrapperScreen() }
+                    composable(MyScreens.Quick.name) { QuickScreen() }
                 }
             }
         }
     }
 
     enum class MyScreens {
-        BaseScreen, Burger, Perritos, Filter, DataStore, Flows, Qualifier, Paging3, ParallaxHg, TwoCom1, CompAsArg, CompMultiSlot, CWrap
+        BaseScreen, Burger, Perritos, Filter, DataStore, Flows, Qualifier, Paging3, ParallaxHg, TwoCom1, CompAsArg, CompMultiSlot, CWrap, Quick
     }
 
     @Composable
@@ -94,7 +96,7 @@ class MainActivity : ComponentActivity() {
                     it.forEach {
                         if (it != "")
                             Button(onClick = { onclick(it) }) {
-                                Text(text = it)
+                                MyText(text = it)
                             }
                     }
                 }
