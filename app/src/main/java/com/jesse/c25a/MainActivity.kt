@@ -72,6 +72,7 @@ class MainActivity : ComponentActivity() {
                     composable(MyScreens.CWrap.name) { ComposableWrapperScreen() }
                     composable(MyScreens.Quick.name) { QuickScreen() }
                     composable(MyScreens.Income.name) { IncomeScreen() }
+
                 }
             }
         }
@@ -87,6 +88,7 @@ class MainActivity : ComponentActivity() {
         Qualifier(MyCatScreen.YOP), Paging3(MyCatScreen.ARIS), Parallax(MyCatScreen.HG),
         TwoCom1(MyCatScreen.YOP), CmpAsArg(MyCatScreen.YOP), CmpMultiSlot(MyCatScreen.YOP,13),
         CWrap(MyCatScreen.YOP), Quick(MyCatScreen.YOP), Income(MyCatScreen.YOP)
+
     }
 
     @Composable
