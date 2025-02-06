@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.jesse.c25a.Income.IncomeScreen
 import com.jesse.c25a.burger.presentation.InitialScreen
 import com.jesse.c25a.compTwoCom.CompMultiSlotScreen
 import com.jesse.c25a.compTwoCom.ComposableAsArgumentScreen
@@ -70,6 +71,8 @@ class MainActivity : ComponentActivity() {
                     composable(MyScreens.CmpMultiSlot.name) { CompMultiSlotScreen() }
                     composable(MyScreens.CWrap.name) { ComposableWrapperScreen() }
                     composable(MyScreens.Quick.name) { QuickScreen() }
+                    composable(MyScreens.Income.name) { IncomeScreen() }
+
                 }
             }
         }
@@ -84,7 +87,8 @@ class MainActivity : ComponentActivity() {
         Filter(MyCatScreen.YOP), DataStore(MyCatScreen.HG), Flows(MyCatScreen.ARIS),
         Qualifier(MyCatScreen.YOP), Paging3(MyCatScreen.ARIS), Parallax(MyCatScreen.HG),
         TwoCom1(MyCatScreen.YOP), CmpAsArg(MyCatScreen.YOP), CmpMultiSlot(MyCatScreen.YOP,13),
-        CWrap(MyCatScreen.YOP), Quick(MyCatScreen.YOP)
+        CWrap(MyCatScreen.YOP), Quick(MyCatScreen.YOP), Income(MyCatScreen.YOP)
+
     }
 
     @Composable
