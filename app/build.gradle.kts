@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     kotlin("kapt")
     alias(libs.plugins.hilt)
+    id("org.jetbrains.kotlin.plugin.serialization")
  }
 
 android {
@@ -66,6 +67,7 @@ dependencies {
     implementation(libs.androidx.runtime.livedata)
 
     implementation(libs.androidx.datastore.preferences)
+    implementation(libs.kotlinx.serialization.json)
 
     implementation(libs.pagingCompose)
 
