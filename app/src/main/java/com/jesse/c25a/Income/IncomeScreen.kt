@@ -1,7 +1,6 @@
 package com.jesse.c25a.Income
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -24,8 +23,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import com.jesse.c25a.Income.MonthlyExpensesCategory.AnyMail
+import com.jesse.c25a.Income.HourlyIncomeCategory.Ft
+import com.jesse.c25a.Income.HourlyIncomeCategory.Snd
 import com.jesse.c25a.Income.MonthlyExpensesCategory.Car
+import com.jesse.c25a.Income.MonthlyExpensesCategory.Col
 import com.jesse.c25a.Income.MonthlyExpensesCategory.Insurance
 import com.jesse.c25a.Income.MonthlyExpensesCategory.Phone
 import com.jesse.c25a.Income.MonthlyExpensesCategory.Streaming
@@ -37,47 +38,51 @@ import com.jesse.c25a.Income.WeeklyExpensesCategory.Mer
 fun IncomeScreen() {
     var expensesState by remember { mutableStateOf(ExpensesState()) }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally
+    Row(
+        modifier = Modifier.fillMaxSize(),
     ) {
-        Spacer(modifier = Modifier.height(16.dp))
-            Row(Modifier.fillMaxWidth()) {
-                Box(modifier = Modifier.weight(1f)) {
-                    MonthlyExpensesCard(
-                        expenses = expensesState.monthlyExpenses,
-                        onExpensesChange = { newExpenses ->
-                            expensesState = expensesState.copy(monthlyExpenses = newExpenses)
-                            expensesState.calculateTotals()
-                        }
-                    )
-                }
-                Box(modifier = Modifier.weight(1f)) {
-                    WeeklyExpensesCard(
-                        expenses = expensesState.weeklyExpenses,
-                        onExpensesChange = { newExpenses ->
-                            expensesState = expensesState.copy(weeklyExpenses = newExpenses)
-                            expensesState.calculateTotals()
-                        }
-                    )
-                }
-            }
+        Column(
+            Modifier
+                .fillMaxWidth()
+                .weight(1f)
+        ) {
 
-        TotalExpenses(
-            totalMonthly = expensesState.totalMonthly,
-            totalWeekly = expensesState.totalWeekly,
-            totalCombined = expensesState.totalCombined
-        )
-        Column (Modifier.fillMaxWidth().weight(3f)){ Text(text = "Total Expenses") }
+            MonthlyExpensesCard(expenses = expensesState.monthlyExpenses,
+                onExpensesChange = { newExpenses ->
+                    expensesState = expensesState.copy(monthlyExpenses = newExpenses)
+                    expensesState.calculateTotals()
+                })
+
+            WeeklyExpensesCard(expenses = expensesState.weeklyExpenses,
+                onExpensesChange = { newExpenses ->
+                    expensesState = expensesState.copy(weeklyExpenses = newExpenses)
+                    expensesState.calculateTotals()
+                })
+
+        }
+        Column(
+            Modifier
+                .fillMaxWidth()
+                .weight(1f)
+        ) {
+            TotalExpenses(
+                totalMonthly = expensesState.totalMonthly,
+                totalWeekly = expensesState.totalWeekly,
+                totalCombined = expensesState.totalCombined
+            )
+            IncomeHourlyCard(income = expensesState.incomeHourly, onExpensesChange = { newIncome ->
+                expensesState = expensesState.copy(incomeHourly = newIncome)
+                expensesState.calculateTotals()
+            })
+            Snapshot(expensesState = expensesState)
+        }
 
     }
 }
 
 @Composable
 fun MonthlyExpensesCard(
-    expenses: MonthlyExpenses,
-    onExpensesChange: (MonthlyExpenses) -> Unit
+    expenses: MonthlyExpenses, onExpensesChange: (MonthlyExpenses) -> Unit
 ) {
     Card(
         modifier = Modifier
@@ -92,26 +97,23 @@ fun MonthlyExpensesCard(
         ) {
             Text(text = "Monthly Expenses", style = MaterialTheme.typography.bodyLarge)
             MonthlyExpensesCategory.entries.forEach { category ->
-                ExpenseTextField(
-                    label = category.name,
-                    value = when (category) {
-                        Car -> expenses.car
-                        Insurance -> expenses.insurance
-                        Phone -> expenses.phone
-                        Streaming -> expenses.streaming
-                        AnyMail -> expenses.anymail
-                    },
-                    onValueChange = {
-                        onExpensesChange(
-                            when (category) {
-                                Car -> expenses.copy(car = it)
-                                Insurance -> expenses.copy(insurance = it)
-                                Phone -> expenses.copy(phone = it)
-                                Streaming -> expenses.copy(streaming = it)
-                                AnyMail -> expenses.copy(anymail = it)
-                            })
-                    }
-                )
+                ExpenseTextField(label = category.name, value = when (category) {
+                    Car -> expenses.car
+                    Insurance -> expenses.insurance
+                    Phone -> expenses.phone
+                    Streaming -> expenses.streaming
+                    Col -> expenses.col
+                }, onValueChange = {
+                    onExpensesChange(
+                        when (category) {
+                            Car -> expenses.copy(car = it)
+                            Insurance -> expenses.copy(insurance = it)
+                            Phone -> expenses.copy(phone = it)
+                            Streaming -> expenses.copy(streaming = it)
+                            Col -> expenses.copy(col = it)
+                        }
+                    )
+                })
             }
         }
     }
@@ -119,8 +121,7 @@ fun MonthlyExpensesCard(
 
 @Composable
 fun WeeklyExpensesCard(
-    expenses: WeeklyExpenses,
-    onExpensesChange: (WeeklyExpenses) -> Unit
+    expenses: WeeklyExpenses, onExpensesChange: (WeeklyExpenses) -> Unit
 ) {
     Card(
         modifier = Modifier
@@ -137,23 +138,19 @@ fun WeeklyExpensesCard(
             Spacer(modifier = Modifier.height(4.dp))
 
             WeeklyExpensesCategory.entries.forEach { category ->
-                ExpenseTextField(
-                    label = category.name,
-                    value = when (category) {
-                        Food -> expenses.food
-                        Gas -> expenses.gas
-                        Mer -> expenses.mer
-                    },
-                    onValueChange = {
-                        onExpensesChange(
-                            when (category) {
-                                Food -> expenses.copy(food = it)
-                                Gas -> expenses.copy(gas = it)
-                                Mer -> expenses.copy(mer = it)
-                            }
-                        )
-                    }
-                )
+                ExpenseTextField(label = category.name, value = when (category) {
+                    Food -> expenses.food
+                    Gas -> expenses.gas
+                    Mer -> expenses.mer
+                }, onValueChange = {
+                    onExpensesChange(
+                        when (category) {
+                            Food -> expenses.copy(food = it)
+                            Gas -> expenses.copy(gas = it)
+                            Mer -> expenses.copy(mer = it)
+                        }
+                    )
+                })
             }
         }
     }
@@ -172,7 +169,7 @@ fun ExpenseTextField(label: String, value: String, onValueChange: (String) -> Un
 }
 
 @Composable
-fun TotalExpenses(totalMonthly: Double, totalWeekly: Double, totalCombined: Double) {
+fun TotalExpenses(totalMonthly: Int, totalWeekly: Int, totalCombined: Int) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -180,33 +177,82 @@ fun TotalExpenses(totalMonthly: Double, totalWeekly: Double, totalCombined: Doub
     ) {
         Column(
             modifier = Modifier
-                .padding(16.dp)
+                .padding(8.dp)
                 .fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally,
-           // verticalArrangement = Arrangement.spacedBy(8.dp)
+            // verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            Text(text = "Total Expenses", style = MaterialTheme.typography.headlineSmall)
+            Text(text = "T. Expenses Weekly", style = MaterialTheme.typography.headlineSmall)
             Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
+                modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(text = "Monthly: ")
                 Text(text = "$$totalMonthly")
             }
             Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
+                modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(text = "Weekly: ")
                 Text(text = "$$totalWeekly")
             }
             Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
+                modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Text(text = "Combined Wkly: ")
+                Text(text = "Cmb Wkly: ")
                 Text(text = "$$totalCombined")
             }
+        }
+    }
+}
+
+@Composable
+fun IncomeHourlyCard(income: IncomeHourly, onExpensesChange: (IncomeHourly) -> Unit) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp)
+    ) {
+        Column(
+            modifier = Modifier
+                .padding(8.dp)
+                .fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(text = "Hourly Rate")
+            HourlyIncomeCategory.entries.forEach { category ->
+                ExpenseTextField(label = category.name, value = when (category) {
+                    Ft -> income.ft
+                    Snd -> income.snd
+                }, onValueChange = {
+                    onExpensesChange(
+                        when (category) {
+                            Ft -> income.copy(ft = it)
+                            Snd -> income.copy(snd = it)
+                        }
+                    )
+                })
+            }
+        }
+    }
+}
+
+@Composable
+fun Snapshot(expensesState: ExpensesState) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp)
+    ) {
+        Column(
+            modifier = Modifier
+                .padding(8.dp)
+                .fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(text = "Snapshot Wkly")
+            Text(text = "Income: ${expensesState.totalIncome }")
+            Text(text = "10%: ${expensesState.tot10Percent}")
+            Text(text = "lqsmdlg: ${expensesState.tot10Percent}")
         }
     }
 }
@@ -216,49 +262,62 @@ data class MonthlyExpenses(
     var insurance: String = "",
     var phone: String = "",
     var streaming: String = "",
-    var anymail: String = ""
+    var col: String = ""
 )
 
 data class WeeklyExpenses(
-    var food: String = "",
-    var gas: String = "",
-    var mer: String = ""
+    var food: String = "", var gas: String = "", var mer: String = ""
+)
+
+data class IncomeHourly(
+    var ft: String = "",
+    var snd: String = "",
 )
 
 data class ExpensesState(
     var monthlyExpenses: MonthlyExpenses = MonthlyExpenses(),
     var weeklyExpenses: WeeklyExpenses = WeeklyExpenses(),
-    var totalMonthly: Double = 0.0,
-    var totalWeekly: Double = 0.0,
-    var totalCombined: Double = 0.0
+    var incomeHourly: IncomeHourly = IncomeHourly(),
+    var totalMonthly: Int = 0,
+    var totalWeekly: Int = 0,
+    var totalCombined: Int = 0,
+    var totalIncome: Int = 0,
+    var tot10Percent: Int = 0
 ) {
     fun calculateTotals() {
         totalMonthly = calculateMonthlyTotal()
         totalWeekly = calculateWeeklyTotal()
-        totalCombined = (totalMonthly*70/3).toInt().toDouble()/100 + totalWeekly
+        totalCombined = (totalMonthly * 70 / 3) + totalWeekly
+        totalIncome = calculateIncome()
+        tot10Percent = totalIncome / 10
     }
 
-    private fun calculateMonthlyTotal(): Double {
+    private fun calculateMonthlyTotal(): Int {
         return listOf(
             monthlyExpenses.car,
             monthlyExpenses.insurance,
             monthlyExpenses.phone,
             monthlyExpenses.streaming,
-            monthlyExpenses.anymail
-        ).sumOf { it.toDoubleOrZero() }
+            monthlyExpenses.col
+        ).sumOf { it.toIntOrZero() }
     }
 
-    private fun calculateWeeklyTotal(): Double {
+    private fun calculateWeeklyTotal(): Int {
         return listOf(
-            weeklyExpenses.food,
-            weeklyExpenses.gas,
-            weeklyExpenses.mer
-        ).sumOf { it.toDoubleOrZero() }
+            weeklyExpenses.food, weeklyExpenses.gas, weeklyExpenses.mer
+        ).sumOf { it.toIntOrZero() }
+    }
+
+    private fun calculateIncome(): Int {
+        val sumPerHour = listOf(
+            incomeHourly.ft, incomeHourly.snd
+        ).sumOf { it.toIntOrZero() }
+        return (sumPerHour * 40 * 0.76).toInt()
     }
 }
 
-fun String.toDoubleOrZero(): Double {
-    return this.toDoubleOrNull() ?: 0.0
+fun String.toIntOrZero(): Int {
+    return this.toIntOrNull() ?: 0
 }
 
 enum class WeeklyExpensesCategory {
@@ -266,5 +325,9 @@ enum class WeeklyExpensesCategory {
 }
 
 enum class MonthlyExpensesCategory {
-    Car, Insurance, Phone, Streaming, AnyMail
+    Car, Insurance, Phone, Streaming, Col
+}
+
+enum class HourlyIncomeCategory {
+    Ft, Snd,
 }
