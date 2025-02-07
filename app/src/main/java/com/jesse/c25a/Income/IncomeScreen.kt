@@ -97,7 +97,8 @@ fun IncomeScreen(viewModel: IncomeVMod = hiltViewModel()) {
 
 @Composable
 fun MonthlyExpensesCard(
-    expenses: MonthlyExpenses, onExpensesChange: (MonthlyExpenses) -> Unit
+    expenses: MonthlyExpenses,
+    onExpensesChange: (MonthlyExpenses) -> Unit
 ) {
     Card(
         modifier = Modifier
@@ -140,7 +141,8 @@ fun MonthlyExpensesCard(
 
 @Composable
 fun WeeklyExpensesCard(
-    expenses: WeeklyExpenses, onExpensesChange: (WeeklyExpenses) -> Unit
+    expenses: WeeklyExpenses,
+    onExpensesChange: (WeeklyExpenses) -> Unit
 ) {
     Card(
         modifier = Modifier
