@@ -32,6 +32,7 @@ import com.jesse.c25a.datastore.DataStoreScreen
 import com.jesse.c25a.filter.presentation.FilterScreen
 import com.jesse.c25a.flows.FlowsScreen
 import com.jesse.c25a.hg.parallax.ParallaxEffectScreen
+import com.jesse.c25a.mlkit.mlkScanner.MlkScanScreen
 import com.jesse.c25a.paging3tutorial.presentation.Paging3Screen
 import com.jesse.c25a.perritos.PerritosScreen
 import com.jesse.c25a.qualifier.presentation.QualifierScreen
@@ -74,6 +75,7 @@ class MainActivity : ComponentActivity() {
                     composable(MyScreens.Quick.name) { QuickScreen() }
                     composable(MyScreens.Income.name) { IncomeScreen() }
                     composable(MyScreens.Table.name) { TableScreen() }
+                    composable(MyScreens.MlKitScanner.name) { MlkScanScreen(activity = this@MainActivity) }
                 }
             }
         }
@@ -88,7 +90,8 @@ class MainActivity : ComponentActivity() {
         Filter(MyCatScreen.YOP), DataStore(MyCatScreen.HG), Flows(MyCatScreen.ARIS),
         Qualifier(MyCatScreen.YOP), Paging3(MyCatScreen.ARIS), Parallax(MyCatScreen.HG),
         TwoCom1(MyCatScreen.YOP), CmpAsArg(MyCatScreen.YOP), CmpMultiSlot(MyCatScreen.YOP,13),
-        CWrap(MyCatScreen.YOP), Quick(MyCatScreen.YOP), Income(MyCatScreen.YOP), Table(MyCatScreen.YOP)
+        CWrap(MyCatScreen.YOP), Quick(MyCatScreen.YOP), Income(MyCatScreen.YOP), Table(MyCatScreen.YOP),
+        MlKitScanner(MyCatScreen.YOP),
 
     }
 
