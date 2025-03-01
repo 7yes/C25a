@@ -69,7 +69,12 @@ dependencies {
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.kotlinx.serialization.json)
 
+    implementation(libs.play.services.mlkit.document.scanner)
+
+
     implementation(libs.pagingCompose)
+
+    implementation(libs.chromecast.sender)
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

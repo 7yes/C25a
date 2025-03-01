@@ -32,6 +32,7 @@ import com.jesse.c25a.datastore.DataStoreScreen
 import com.jesse.c25a.filter.presentation.FilterScreen
 import com.jesse.c25a.flows.FlowsScreen
 import com.jesse.c25a.hg.parallax.ParallaxEffectScreen
+import com.jesse.c25a.mlkit.mlkScanner.MlkScanScreen
 import com.jesse.c25a.paging3tutorial.presentation.Paging3Screen
 import com.jesse.c25a.perritos.PerritosScreen
 import com.jesse.c25a.qualifier.presentation.QualifierScreen
@@ -39,6 +40,7 @@ import com.jesse.c25a.quick.QuickScreen
 import com.jesse.c25a.table.TableScreen
 import com.jesse.c25a.twocomposable.TwoComposableScreen
 import com.jesse.c25a.ui.theme.C25aTheme
+import com.jesse.c25a.youtube.YouTubeScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -74,13 +76,16 @@ class MainActivity : ComponentActivity() {
                     composable(MyScreens.Quick.name) { QuickScreen() }
                     composable(MyScreens.Income.name) { IncomeScreen() }
                     composable(MyScreens.Table.name) { TableScreen() }
+                    composable(MyScreens.MlKitScanner.name) { MlkScanScreen(activity = this@MainActivity) }
+                    composable(MyScreens.YouTube.name) { YouTubeScreen() }
                 }
             }
         }
     }
 
     enum class MyCatScreen(val color: Int) {
-        HG(color = R.color.teal_200), PL(color = R.color.pl), ARIS(color = R.color.orange), YOP(color = R.color.marino)
+        HG(color = R.color.teal_200), PL(color = R.color.pl), ARIS(color = R.color.orange), YOP(color = R.color.marino),
+        AG(color = R.color.white)
     }
 
     enum class MyScreens(val cat: MyCatScreen, val size: Int = 16) {
@@ -88,8 +93,8 @@ class MainActivity : ComponentActivity() {
         Filter(MyCatScreen.YOP), DataStore(MyCatScreen.HG), Flows(MyCatScreen.ARIS),
         Qualifier(MyCatScreen.YOP), Paging3(MyCatScreen.ARIS), Parallax(MyCatScreen.HG),
         TwoCom1(MyCatScreen.YOP), CmpAsArg(MyCatScreen.YOP), CmpMultiSlot(MyCatScreen.YOP,13),
-        CWrap(MyCatScreen.YOP), Quick(MyCatScreen.YOP), Income(MyCatScreen.YOP), Table(MyCatScreen.YOP)
-
+        CWrap(MyCatScreen.YOP), Quick(MyCatScreen.YOP), Income(MyCatScreen.YOP), Table(MyCatScreen.YOP),
+        MlKitScanner(MyCatScreen.YOP),YouTube(MyCatScreen.AG)
     }
 
     @Composable

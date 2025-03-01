@@ -1,5 +1,6 @@
 package com.jesse.c25a.table
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Box
@@ -34,7 +35,7 @@ val info = listOf(
     listOf("Row 1", "Data 1.1", "Data 1.2", "Data 1.3", "Data 1.4", "Data 1.5", "Data 1.6"),
     listOf("Row 2", "Data 2.1", "Data 2.2", "Data 2.3", "Data 2.4", "Data 2.5", "Data 2.6"),
     listOf("Row 3", "Data 3.1", "Data 3.2", "Data 3.3", "Data 3.4", "Data 3.5", "Data 3.6"),
-    listOf("Row 4", "Data 4.1", "Data 4.2", "Data 4.3", "Data 4.4", "Data 4.5", "Data 4.6"),
+    listOf("Row 44", "Data 4.1", "Data 4.2", "Data 4.3", "Data 4.4", "Data 4.5", "Data 4.6"),
     listOf("Row 5", "Data 5.1", "Data 5.2", "Data 5.3", "Data 5.4", "Data 5.5", "Data 5.6"),
     listOf("Row 6", "Data 6.1", "Data 6.2", "Data 6.3", "Data 6.4", "Data 6.5", "Data 6.6"),
     listOf("Row 7", "Data 7.1", "Data 7.2", "Data 7.3", "Data 7.4", "Data 7.5", "Data 7.6"),
@@ -59,8 +60,8 @@ fun TableScreen() {
 fun TableScreen(
     titles: List<String>,
     info: List<List<String>>,
+    firstColumnWidth: Dp = getFirstColumnWidth(info),
     cellWidth: Dp = 100.dp,
-    firstColumnWidth: Dp = getFirstColumnWidth(info.first()),
     firstRowHeight: Dp = 50.dp,
     otherRowHeight: Dp = 40.dp,
 ) {
@@ -160,14 +161,16 @@ fun TableScreen(
     }
 }
 
-fun getFirstColumnWidth(firstColumn: List<String>): Dp {
+fun getFirstColumnWidth(info: List<List<String>>): Dp {
     var firstColumnMaxLetters = 0
-    firstColumn.forEach {
-        if (it.length > firstColumnMaxLetters) {
-            firstColumnMaxLetters = it.length
+    info.forEach {row->
+        if (row.first().length > firstColumnMaxLetters) {
+            firstColumnMaxLetters = row.first().length
         }
+        Log.d("TAJ", "info1 ${row.first()} ${row.first().length}: ")
     }
-    return (firstColumnMaxLetters * 10).dp
+    Log.d("TAJ", "getFirstColumnWidth: $firstColumnMaxLetters ")
+    return (firstColumnMaxLetters * 12).dp
 }
 
 @Composable
