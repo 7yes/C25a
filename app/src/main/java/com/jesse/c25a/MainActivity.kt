@@ -95,7 +95,6 @@ class MainActivity : ComponentActivity() {
         TwoCom1(MyCatScreen.YOP), CmpAsArg(MyCatScreen.YOP), CmpMultiSlot(MyCatScreen.YOP,13),
         CWrap(MyCatScreen.YOP), Quick(MyCatScreen.YOP), Income(MyCatScreen.YOP), Table(MyCatScreen.YOP),
         MlKitScanner(MyCatScreen.YOP),YouTube(MyCatScreen.AG)
-
     }
 
     @Composable
