@@ -73,6 +73,8 @@ dependencies {
 
     implementation(libs.pagingCompose)
 
+    implementation(libs.chromecast.sender)
+
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
