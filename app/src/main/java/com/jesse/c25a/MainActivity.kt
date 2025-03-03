@@ -1,10 +1,13 @@
 package com.jesse.c25a
 
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -35,6 +38,7 @@ import com.jesse.c25a.hg.parallax.ParallaxEffectScreen
 import com.jesse.c25a.mlkit.mlkScanner.MlkScanScreen
 import com.jesse.c25a.paging3tutorial.presentation.Paging3Screen
 import com.jesse.c25a.perritos.PerritosScreen
+import com.jesse.c25a.pickphotosvideos.PickPhotosVideos
 import com.jesse.c25a.qualifier.presentation.QualifierScreen
 import com.jesse.c25a.quick.QuickScreen
 import com.jesse.c25a.table.TableScreen
@@ -45,6 +49,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -78,13 +83,16 @@ class MainActivity : ComponentActivity() {
                     composable(MyScreens.Table.name) { TableScreen() }
                     composable(MyScreens.MlKitScanner.name) { MlkScanScreen(activity = this@MainActivity) }
                     composable(MyScreens.YouTube.name) { YouTubeScreen() }
+                    composable(MyScreens.PickPhotosVideos.name) { PickPhotosVideos() }
                 }
             }
         }
     }
 
     enum class MyCatScreen(val color: Int) {
-        HG(color = R.color.teal_200), PL(color = R.color.pl), ARIS(color = R.color.orange), YOP(color = R.color.marino),
+        HG(color = R.color.teal_200), PL(color = R.color.pl), ARIS(color = R.color.orange), YOP(
+            color = R.color.marino
+        ),
         AG(color = R.color.white)
     }
 
@@ -92,9 +100,9 @@ class MainActivity : ComponentActivity() {
         BaseScreen(MyCatScreen.YOP), Burger(MyCatScreen.PL), Perritos(MyCatScreen.ARIS),
         Filter(MyCatScreen.YOP), DataStore(MyCatScreen.HG), Flows(MyCatScreen.ARIS),
         Qualifier(MyCatScreen.YOP), Paging3(MyCatScreen.ARIS), Parallax(MyCatScreen.HG),
-        TwoCom1(MyCatScreen.YOP), CmpAsArg(MyCatScreen.YOP), CmpMultiSlot(MyCatScreen.YOP,13),
+        TwoCom1(MyCatScreen.YOP), CmpAsArg(MyCatScreen.YOP), CmpMultiSlot(MyCatScreen.YOP, 13),
         CWrap(MyCatScreen.YOP), Quick(MyCatScreen.YOP), Income(MyCatScreen.YOP), Table(MyCatScreen.YOP),
-        MlKitScanner(MyCatScreen.YOP),YouTube(MyCatScreen.AG)
+        MlKitScanner(MyCatScreen.YOP), YouTube(MyCatScreen.AG), PickPhotosVideos(MyCatScreen.AG)
     }
 
     @Composable
@@ -121,9 +129,17 @@ class MainActivity : ComponentActivity() {
 
                     it.forEach {
                         if (it != "")
-                            Button( modifier = Modifier.weight(1f), onClick = { onclick(it) }, contentPadding = ButtonDefaults.TextButtonContentPadding) {
+                            Button(
+                                modifier = Modifier.weight(1f),
+                                onClick = { onclick(it) },
+                                contentPadding = ButtonDefaults.TextButtonContentPadding
+                            ) {
                                 val buttonData: MyScreens = getButtonInfo(it)
-                                    MyText(text = it, color = buttonData.cat.color, textSizeDp = buttonData.size.dp)
+                                MyText(
+                                    text = it,
+                                    color = buttonData.cat.color,
+                                    textSizeDp = buttonData.size.dp
+                                )
                             }
                     }
                 }

@@ -71,10 +71,14 @@ dependencies {
 
     implementation(libs.play.services.mlkit.document.scanner)
 
-
     implementation(libs.pagingCompose)
 
     implementation(libs.chromecast.sender)
+
+    //exoplayer // media
+    implementation(libs.androidx.media3.exoplayer)
+    implementation(libs.androidx.media3.ui)
+    implementation(libs.androidx.media3.session)
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
