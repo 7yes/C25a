@@ -37,6 +37,7 @@ import com.jesse.c25a.paging3tutorial.presentation.Paging3Screen
 import com.jesse.c25a.perritos.PerritosScreen
 import com.jesse.c25a.qualifier.presentation.QualifierScreen
 import com.jesse.c25a.quick.QuickScreen
+import com.jesse.c25a.starRating.StarRatingScreen
 import com.jesse.c25a.table.TableScreen
 import com.jesse.c25a.twocomposable.TwoComposableScreen
 import com.jesse.c25a.ui.theme.C25aTheme
@@ -78,6 +79,7 @@ class MainActivity : ComponentActivity() {
                     composable(MyScreens.Table.name) { TableScreen() }
                     composable(MyScreens.MlKitScanner.name) { MlkScanScreen(activity = this@MainActivity) }
                     composable(MyScreens.YouTube.name) { YouTubeScreen() }
+                    composable(MyScreens.StarRating.name) { StarRatingScreen() }
                 }
             }
         }
@@ -94,7 +96,7 @@ class MainActivity : ComponentActivity() {
         Qualifier(MyCatScreen.YOP), Paging3(MyCatScreen.ARIS), Parallax(MyCatScreen.HG),
         TwoCom1(MyCatScreen.YOP), CmpAsArg(MyCatScreen.YOP), CmpMultiSlot(MyCatScreen.YOP,13),
         CWrap(MyCatScreen.YOP), Quick(MyCatScreen.YOP), Income(MyCatScreen.YOP), Table(MyCatScreen.YOP),
-        MlKitScanner(MyCatScreen.YOP),YouTube(MyCatScreen.AG)
+        MlKitScanner(MyCatScreen.YOP),YouTube(MyCatScreen.AG),StarRating(MyCatScreen.AG),
     }
 
     @Composable
