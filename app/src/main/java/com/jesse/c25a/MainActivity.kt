@@ -32,6 +32,7 @@ import com.jesse.c25a.datastore.DataStoreScreen
 import com.jesse.c25a.filter.presentation.FilterScreen
 import com.jesse.c25a.flows.FlowsScreen
 import com.jesse.c25a.hg.parallax.ParallaxEffectScreen
+import com.jesse.c25a.lazys.LazysScreen
 import com.jesse.c25a.mlkit.mlkScanner.MlkScanScreen
 import com.jesse.c25a.paging3tutorial.presentation.Paging3Screen
 import com.jesse.c25a.perritos.PerritosScreen
@@ -80,6 +81,7 @@ class MainActivity : ComponentActivity() {
                     composable(MyScreens.MlKitScanner.name) { MlkScanScreen(activity = this@MainActivity) }
                     composable(MyScreens.YouTube.name) { YouTubeScreen() }
                     composable(MyScreens.StarRating.name) { StarRatingScreen() }
+                    composable(MyScreens.Lazys.name) { LazysScreen() }
                 }
             }
         }
@@ -96,7 +98,7 @@ class MainActivity : ComponentActivity() {
         Qualifier(MyCatScreen.YOP), Paging3(MyCatScreen.ARIS), Parallax(MyCatScreen.HG),
         TwoCom1(MyCatScreen.YOP), CmpAsArg(MyCatScreen.YOP), CmpMultiSlot(MyCatScreen.YOP,13),
         CWrap(MyCatScreen.YOP), Quick(MyCatScreen.YOP), Income(MyCatScreen.YOP), Table(MyCatScreen.YOP),
-        MlKitScanner(MyCatScreen.YOP),YouTube(MyCatScreen.AG),StarRating(MyCatScreen.AG),
+        MlKitScanner(MyCatScreen.YOP),YouTube(MyCatScreen.AG),StarRating(MyCatScreen.AG),Lazys(MyCatScreen.AG),
     }
 
     @Composable
