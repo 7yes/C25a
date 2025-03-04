@@ -52,7 +52,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            C25aTheme {
+            C25aTheme { //
                 val navController = rememberNavController()
                 NavHost(
                     navController = navController,
