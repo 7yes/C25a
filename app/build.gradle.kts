@@ -77,6 +77,8 @@ dependencies {
 
     implementation(libs.androidx.material.icons.extended)
 
+    implementation(libs.chromecast.sender)
+
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
