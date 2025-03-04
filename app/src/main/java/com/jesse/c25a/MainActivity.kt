@@ -13,7 +13,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -125,7 +127,7 @@ class MainActivity : ComponentActivity() {
 
                     it.forEach {
                         if (it != "")
-                            Button( modifier = Modifier.weight(1f), onClick = { onclick(it) }, contentPadding = ButtonDefaults.TextButtonContentPadding) {
+                            Button( modifier = Modifier.weight(1f), onClick = { onclick(it) }, contentPadding = ButtonDefaults.TextButtonContentPadding, colors = ButtonDefaults.buttonColors().copy(containerColor = MaterialTheme.colorScheme.onSurfaceVariant)) {
                                 val buttonData: MyScreens = getButtonInfo(it)
                                     MyText(text = it, color = buttonData.cat.color, textSizeDp = buttonData.size.dp)
                             }
