@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -32,11 +33,13 @@ import com.jesse.c25a.datastore.DataStoreScreen
 import com.jesse.c25a.filter.presentation.FilterScreen
 import com.jesse.c25a.flows.FlowsScreen
 import com.jesse.c25a.hg.parallax.ParallaxEffectScreen
+import com.jesse.c25a.lazys.LazysScreen
 import com.jesse.c25a.mlkit.mlkScanner.MlkScanScreen
 import com.jesse.c25a.paging3tutorial.presentation.Paging3Screen
 import com.jesse.c25a.perritos.PerritosScreen
 import com.jesse.c25a.qualifier.presentation.QualifierScreen
 import com.jesse.c25a.quick.QuickScreen
+import com.jesse.c25a.starRating.StarRatingScreen
 import com.jesse.c25a.table.TableScreen
 import com.jesse.c25a.twocomposable.TwoComposableScreen
 import com.jesse.c25a.ui.theme.C25aTheme
@@ -49,7 +52,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            C25aTheme {
+            C25aTheme { //
                 val navController = rememberNavController()
                 NavHost(
                     navController = navController,
@@ -78,6 +81,8 @@ class MainActivity : ComponentActivity() {
                     composable(MyScreens.Table.name) { TableScreen() }
                     composable(MyScreens.MlKitScanner.name) { MlkScanScreen(activity = this@MainActivity) }
                     composable(MyScreens.YouTube.name) { YouTubeScreen() }
+                    composable(MyScreens.StarRating.name) { StarRatingScreen() }
+                    composable(MyScreens.Lazys.name) { LazysScreen() }
                 }
             }
         }
@@ -94,7 +99,7 @@ class MainActivity : ComponentActivity() {
         Qualifier(MyCatScreen.YOP), Paging3(MyCatScreen.ARIS), Parallax(MyCatScreen.HG),
         TwoCom1(MyCatScreen.YOP), CmpAsArg(MyCatScreen.YOP), CmpMultiSlot(MyCatScreen.YOP,13),
         CWrap(MyCatScreen.YOP), Quick(MyCatScreen.YOP), Income(MyCatScreen.YOP), Table(MyCatScreen.YOP),
-        MlKitScanner(MyCatScreen.YOP),YouTube(MyCatScreen.AG)
+        MlKitScanner(MyCatScreen.YOP),YouTube(MyCatScreen.AG),StarRating(MyCatScreen.AG),Lazys(MyCatScreen.AG),
     }
 
     @Composable
@@ -121,7 +126,7 @@ class MainActivity : ComponentActivity() {
 
                     it.forEach {
                         if (it != "")
-                            Button( modifier = Modifier.weight(1f), onClick = { onclick(it) }, contentPadding = ButtonDefaults.TextButtonContentPadding) {
+                            Button( modifier = Modifier.weight(1f), onClick = { onclick(it) }, contentPadding = ButtonDefaults.TextButtonContentPadding, colors = ButtonDefaults.buttonColors().copy(containerColor = MaterialTheme.colorScheme.onSurfaceVariant)) {
                                 val buttonData: MyScreens = getButtonInfo(it)
                                     MyText(text = it, color = buttonData.cat.color, textSizeDp = buttonData.size.dp)
                             }
