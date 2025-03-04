@@ -69,12 +69,13 @@ dependencies {
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.kotlinx.serialization.json)
 
-    implementation(libs.play.services.mlkit.document.scanner)
+    implementation(libs.play.services.mlkit.document.scanner) //mlkit scanner
 
+    implementation(libs.pagingCompose) //paging
 
-    implementation(libs.pagingCompose)
+    implementation(libs.chromecast.sender) //Dynamic Colors
 
-    implementation(libs.chromecast.sender)
+    implementation(libs.androidx.material.icons.extended)
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
