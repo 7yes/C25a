@@ -54,7 +54,6 @@ fun NavButtonBarBackgroundScreen(modifier: Modifier = Modifier) {
             }
         }
     }
-
     Column(
         modifier = modifier
             .fillMaxSize()
