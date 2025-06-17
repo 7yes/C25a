@@ -24,6 +24,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.jesse.c25a.Income.IncomeScreen
+import com.jesse.c25a.NavButtonBarBkgr.NavButtonBarBackgroundScreen
 import com.jesse.c25a.burger.presentation.InitialScreen
 import com.jesse.c25a.compTwoCom.CompMultiSlotScreen
 import com.jesse.c25a.compTwoCom.ComposableAsArgumentScreen
@@ -85,6 +86,7 @@ class MainActivity : ComponentActivity() {
                     composable(MyScreens.YouTube.name) { YouTubeScreen() }
                     composable(MyScreens.StarRating.name) { StarRatingScreen() }
                     composable(MyScreens.Lazys.name) { LazysScreen() }
+                    composable(MyScreens.NavBtnBarBkg.name) { NavButtonBarBackgroundScreen() }
                 }
             }
         }
@@ -102,6 +104,7 @@ class MainActivity : ComponentActivity() {
         TwoCom1(MyCatScreen.YOP), CmpAsArg(MyCatScreen.YOP), CmpMultiSlot(MyCatScreen.YOP,13),
         CWrap(MyCatScreen.YOP), Quick(MyCatScreen.YOP), Quick2(MyCatScreen.YOP), Income(MyCatScreen.YOP), Table(MyCatScreen.YOP),
         MlKitScanner(MyCatScreen.YOP),YouTube(MyCatScreen.AG),StarRating(MyCatScreen.AG),Lazys(MyCatScreen.AG),
+        NavBtnBarBkg(MyCatScreen.YOP)
     }
 
     @Composable
